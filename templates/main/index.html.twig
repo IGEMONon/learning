@@ -16,5 +16,32 @@
         <li>Your controller at <code><a href="{{ 'C:/OSPanel/domains/forsymfony/src/Controller/MainController.php'|file_link(0) }}">src/Controller/MainController.php</a></code></li>
         <li>Your template at <code><a href="{{ 'C:/OSPanel/domains/forsymfony/templates/main/index.html.twig'|file_link(0) }}">templates/main/index.html.twig</a></code></li>
     </ul>
+    <div>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for note in notes %}
+        <tr>
+            <th scope="row">{{ note.id }}</th>
+            <td>{{ note.title }}</td>
+            <td>{{ note.description }}</td>
+            <td>{{ note.status }}</td>
+            <td><a href="{{ path('remove_note', {'note': note.id}) }}" class="btn btn-warning">Delete</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}
